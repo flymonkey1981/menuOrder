@@ -34,7 +34,9 @@ public class Order {
     )
     private List<Food> foods = new ArrayList<>();
 
-    @OneToMany(mappedBy="order")
+    //@OneToMany(mappedBy="order", cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @OneToMany(cascade = { CascadeType.MERGE }, orphanRemoval = true)
+    @JoinColumn(name = "order_id")
     private List<Chef> chefs;
 
     public Order(){
@@ -46,6 +48,10 @@ public class Order {
         this.quantity = quantity;
         this.pickupDate = pickupDate;
         this.foods = foods;
+    }
+
+    public void setChefs(List<Chef> chefs) {
+        this.chefs = chefs;
     }
 
     public Long getId() {

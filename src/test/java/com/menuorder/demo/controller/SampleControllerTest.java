@@ -1,9 +1,7 @@
 package com.menuorder.demo.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.menuorder.demo.entity.Food;
-import com.menuorder.demo.entity.Order;
-import com.menuorder.demo.entity.SampleEntity;
+import com.menuorder.demo.entity.*;
 import com.menuorder.demo.service.MenuOrderService;
 import com.menuorder.demo.service.SampleService;
 import org.junit.Before;
@@ -83,11 +81,34 @@ public class SampleControllerTest {
        // List<Food> lists = new ArrayList<>();
        // lists.add(food);
         List<Food> lists = menuOrderService.getAll();
-
-
         Order order = new Order(new Date(), 5, new Date(), lists);
 
+        List<Chef> chefs = menuOrderService.getAllChefs();
+
+        order.setChefs(chefs);
+
+
         menuOrderService.createOrder(order);
+
+    }
+
+    @Test
+    public void canCreateAdministrator() throws Exception {
+
+        Administrator administrator = new Administrator("lina", "fung", "linaf", "04562378", "xxxxxx");
+
+        menuOrderService.createAdministrator(administrator);
+
+    }
+
+    @Test
+    public void canCreateChef() throws Exception {
+        //Food food = new Food("chicken", 250, 15.80);
+        // List<Food> lists = new ArrayList<>();
+        // lists.add(food);
+        Chef chef = new Chef("bob12", "vc34", "bobv34", "04562378", "xxxxxx");
+
+        menuOrderService.createChef(chef);
 
     }
 

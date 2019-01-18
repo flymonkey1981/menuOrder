@@ -4,11 +4,10 @@ package com.menuorder.demo.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "chef")
-public class Chef {
+@Table(name = "admin")
+public class Administrator {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    //@GeneratedValue
     private Long id;
 
     @Column(name = "last_name")
@@ -26,24 +25,15 @@ public class Chef {
     @Column(name = "password")
     private String password;
 
-    //@ManyToOne(optional = true)
-   // @JoinColumn(name="order_id")
-   // private Order order;
 
-    public Chef(){
+    public Administrator(){}
 
-    }
-
-    public Chef(String lastName, String firstName, String userName, String phoneNumber, String password){
+    public Administrator(String lastName, String firstName, String userName, String phoneNumber, String password){
         this.lastName = lastName;
         this.firstName = firstName;
         this.userName = userName;
         this.phoneNumber = phoneNumber;
         this.password = password;
     }
-
-    //public void setOrder(Order order){
-   //     this.order = order;
-   // }
 
 }
