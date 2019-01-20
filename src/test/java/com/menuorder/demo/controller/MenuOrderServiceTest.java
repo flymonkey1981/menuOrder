@@ -36,17 +36,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
-
-public class SampleControllerTest {
-    @InjectMocks
-    private SampleController sampleController;
-
-    @Spy
-    SampleService sampleService;
+public class MenuOrderServiceTest {
 
     @Spy
     MenuOrderService menuOrderService;
-
     private MockMvc mvc;
     private JacksonTester<SampleEntity> jsonSuperHero;
     @Autowired
@@ -60,16 +53,19 @@ public class SampleControllerTest {
         // Initializes the JacksonTester
         JacksonTester.initFields(this, new ObjectMapper());
         // MockMvc standalone approach
-        mvc = MockMvcBuilders.standaloneSetup(sampleController).build();
-        sampleService = (SampleService) actx.getBean("sampleService");
         menuOrderService = (MenuOrderService) actx.getBean("menuOrderService");
         MockitoAnnotations.initMocks(this);
     }
 
+    @Test
+    public void canFindCustomerByUsernameAndPassword() {
+       Customer customer = menuOrderService.findCustomerByUsernameAndPassword("linax", "81DC9BDB52D04DC20036DBD8313ED055");
+        assertThat(customer.getEmail()).isEqualTo("linaf");
+    }
 
     @Test
     public void canCreateProduct() throws Exception {
-       // Food food = new Food("ice cream", 150, 5.80);
+        // Food food = new Food("ice cream", 150, 5.80);
         Food chocolate = new Food("chocolate", 200, 7.80);
         Food chips = new Food("chips", 200, 9.2);
         menuOrderService.createFood(chocolate);
@@ -79,8 +75,8 @@ public class SampleControllerTest {
     @Test
     public void canCreateOrder() throws Exception {
         //Food food = new Food("chicken", 250, 15.80);
-       // List<Food> lists = new ArrayList<>();
-       // lists.add(food);
+        // List<Food> lists = new ArrayList<>();
+        // lists.add(food);
         List<Food> lists = menuOrderService.getAll();
         Order order = new Order(new Date(), 5, new Date(), lists);
 
@@ -122,30 +118,5 @@ public class SampleControllerTest {
         menuOrderService.createChef(chef);
 
     }
-
-    @Test
-    public void canCreateANewSuperHero() throws Exception {
-        // when
-        MockHttpServletResponse response = mvc.perform(
-                post("/createsample/").contentType(MediaType.APPLICATION_JSON).content(
-                        jsonSuperHero.write(new SampleEntity(3, "Mannon123", 43)).getJson()
-                )).andReturn().getResponse();
-
-        // then
-
-        assertThat(response.getStatus()).isEqualTo(HttpStatus.CREATED.value());
-    }
-
-    @Test
-    public void canGetSample() throws Exception {
-        // when
-        mvc.perform(
-                get("/sample/")).andDo(print()).andExpect(status().isOk()).andExpect(content().string(containsString("Mannon")));
-
-        // then
-
-        //assertThat(response.getStatus()).isEqualTo(HttpStatus.CREATED.value());
-    }
-
 
 }

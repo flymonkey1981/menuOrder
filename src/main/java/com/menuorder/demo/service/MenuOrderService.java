@@ -1,13 +1,8 @@
 package com.menuorder.demo.service;
 
-import com.menuorder.demo.entity.Administrator;
-import com.menuorder.demo.entity.Chef;
-import com.menuorder.demo.entity.Food;
-import com.menuorder.demo.entity.Order;
-import com.menuorder.demo.repository.AdministratorRepository;
-import com.menuorder.demo.repository.ChefRepository;
-import com.menuorder.demo.repository.FoodRepository;
-import com.menuorder.demo.repository.OrderRepository;
+import com.menuorder.demo.entity.*;
+import com.menuorder.demo.repository.*;
+import com.menuorder.demo.util.Security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +23,9 @@ public class MenuOrderService {
     @Autowired
     AdministratorRepository administratorRepository;
 
+    @Autowired
+    CustomerRepository customerRepository;
+
     public Food createFood(Food food) {
         return foodRepository.save(food);
     }
@@ -46,9 +44,17 @@ public class MenuOrderService {
         return chefRepository.save(chef);
     }
 
+    public Customer createCustomer(Customer customer){ return customerRepository.save(customer);}
+
     public Administrator createAdministrator(Administrator administrator) {
         return administratorRepository.save(administrator);
     }
+
+    public Customer findByUserName(String userName){
+        return customerRepository.findByUserName(userName);
+    }
+
+    public Customer findCustomerByUsernameAndPassword(String userName, String password) {return customerRepository.findCustomerByUsernameAndPassword(userName, Security.md5(password));}
 
     public List<Food> getAll(){
         return foodRepository.getAll();
