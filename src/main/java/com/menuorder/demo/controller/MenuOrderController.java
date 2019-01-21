@@ -1,6 +1,7 @@
 package com.menuorder.demo.controller;
 
 
+import com.menuorder.demo.entity.Administrator;
 import com.menuorder.demo.entity.Customer;
 import com.menuorder.demo.service.MenuOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,11 @@ public class MenuOrderController {
     @RequestMapping(value = "/findByUserNameAndPassword")
     public Customer findCustomerByUsernameAndPassword(String userName, String password) {
         return menuOrderService.findCustomerByUsernameAndPassword(userName, password);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping(value = "/findAdminByUserNameAndPassword")
+    public Administrator findAdminByUsernameAndPassword(String userName, String password) {
+        return menuOrderService.findAdminByUsernameAndPassword(userName, password);
     }
 }

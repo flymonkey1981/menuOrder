@@ -56,6 +56,11 @@ public class MenuOrderService {
 
     public Customer findCustomerByUsernameAndPassword(String userName, String password) {return customerRepository.findCustomerByUsernameAndPassword(userName, Security.md5(password));}
 
+    public Administrator findAdminByUsernameAndPassword(String userName, String password)
+    {
+        return administratorRepository.findAdminByUsernameAndPassword(userName, password);
+    }
+
     public List<Food> getAll(){
         return foodRepository.getAll();
     }

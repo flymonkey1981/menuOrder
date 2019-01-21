@@ -61,4 +61,20 @@ public class Administrator {
         this.postCode = postCode;
     }
 
+    public String getUserName() {
+        return this.userName;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
 }
