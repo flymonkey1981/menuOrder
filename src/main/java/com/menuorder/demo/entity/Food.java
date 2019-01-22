@@ -13,6 +13,18 @@ public class Food {
     //@GeneratedValue
     private Long id;
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     @Column(name = "name")
     private String name;
 

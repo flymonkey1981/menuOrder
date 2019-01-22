@@ -23,7 +23,7 @@ public class Customer {
     private String phoneNumber;
 
     @Column(name = "address_line1")
-    private String addressLin1;
+    private String addressLine1;
 
     @Column(name = "address_line2")
     private String addressLine2;
@@ -49,13 +49,61 @@ public class Customer {
 
     private Customer() {}
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public void setSuburb(String suburb) {
+        this.suburb = suburb;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Customer(String lastName, String firstName, String email, String phoneNumber,
-                    String addressLin1, String addressLine2, String suburb, String state, String country, String postCode, String userName, String password){
+                    String addressLine1, String addressLine2, String suburb, String state, String country, String postCode, String userName, String password){
         this.lastName = lastName;
         this.firstName = firstName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.addressLin1 = addressLin1;
+        this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;
         this.suburb = suburb;
         this.state = state;
